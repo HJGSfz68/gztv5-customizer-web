@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f6f7f4">
+  <title>APK 定制台 · GZTV5</title>
+  <style>
+    :root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:#17211c;background:#f6f7f4;font-synthesis:none;text-rendering:optimizeLegibility}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 10% 0%,#edf4eb 0,transparent 38%),#f6f7f4}
+    .shell{width:min(1040px,calc(100% - 36px));margin:0 auto;padding:34px 0 50px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:42px}
+    .brand{display:flex;align-items:center;gap:12px}.mark{height:40px;width:40px;border-radius:13px;background:#183d2c;color:#d7ff7d;display:grid;place-items:center;font-weight:850;font-size:20px;box-shadow:0 7px 18px #183d2c24}.brand strong{font-size:15px;letter-spacing:.02em}.brand small{display:block;color:#758078;font-size:11px;margin-top:3px;letter-spacing:.09em;text-transform:uppercase}
+    .secure{display:flex;align-items:center;gap:8px;color:#68746c;font-size:12px}.secure i{width:8px;height:8px;background:#62ae73;border-radius:50%;box-shadow:0 0 0 4px #62ae7318}
+    .hero{margin:0 0 25px}.eyebrow{font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#728174}.hero h1{font-size:clamp(29px,5vw,44px);line-height:1.14;letter-spacing:-.055em;margin:11px 0 10px;color:#17261d}.hero p{color:#6f7b72;font-size:14px;margin:0;line-height:1.7}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) 286px;gap:18px;align-items:start}.card{background:#fff;border:1px solid #e7ebe5;border-radius:18px;box-shadow:0 12px 35px #24332808}.form-card{padding:27px 28px}.card-title{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:24px}.card-title h2{margin:0;font-size:17px;letter-spacing:-.02em}.card-title p{color:#7b857d;font-size:12px;margin:6px 0 0}.badge{padding:6px 9px;border-radius:99px;background:#f0f4ee;color:#627266;font-size:11px;white-space:nowrap}
+    .fields{display:grid;grid-template-columns:1fr 1fr;gap:18px 15px}.field.full{grid-column:1/-1}.field label{display:flex;justify-content:space-between;gap:12px;font-size:12px;font-weight:720;color:#35443a;margin:0 0 8px}.field label span{font-weight:450;color:#98a199}
+    input[type=text],input[type=url],input[type=password]{height:46px;width:100%;border:1px solid #e2e8e0;background:#fbfcfa;border-radius:10px;padding:0 13px;color:#1b2a20;font-size:13px;outline:none;transition:.16s}
+    input:focus{background:#fff;border-color:#7ca47f;box-shadow:0 0 0 3px #6d9c731b}input::placeholder{color:#a9b1aa}
+    .help{margin:7px 0 0;font-size:11px;line-height:1.5;color:#929b93}.upload{border:1px dashed #cdd8cc;border-radius:12px;padding:14px;display:flex;align-items:center;gap:13px;background:#fbfcfa;cursor:pointer;transition:.16s}.upload:hover{border-color:#86a88a;background:#f8fbf6}.preview{width:45px;height:45px;border-radius:11px;background:#eff3ed;display:grid;place-items:center;color:#7b887d;font-size:19px;overflow:hidden;flex:0 0 auto}.preview img{width:100%;height:100%;object-fit:cover}.upload-copy{min-width:0;flex:1}.upload-copy b{font-size:12px;display:block;color:#344238}.upload-copy span{display:block;font-size:11px;color:#929b93;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.upload input{display:none}.upload-btn{border:1px solid #e0e6de;padding:7px 10px;border-radius:8px;color:#506253;font-size:11px;background:white;white-space:nowrap}
+    .actions{display:flex;align-items:center;gap:12px;margin-top:24px}.primary{height:46px;padding:0 18px;border:0;border-radius:10px;background:#1a402d;color:#e3ffae;font-size:13px;font-weight:760;cursor:pointer;box-shadow:0 6px 15px #193f2d1b;transition:.16s}.primary:hover{background:#245237;transform:translateY(-1px)}.primary:disabled{opacity:.55;cursor:wait;transform:none}.action-note{font-size:11px;color:#8b958c;line-height:1.5}
+    .side{display:grid;gap:14px}.side-card{padding:19px}.side-card h3{font-size:12px;margin:0 0 14px;color:#354339}.status{display:flex;align-items:center;gap:9px;padding:11px 12px;border:1px solid #e6eee4;background:#f7faf5;border-radius:10px;color:#4e7555;font-size:12px;font-weight:650}.status .dot{width:7px;height:7px;border-radius:50%;background:#72b67d}.facts{display:grid;gap:12px;margin-top:15px}.fact{display:flex;justify-content:space-between;gap:9px;font-size:11px;color:#858f87}.fact b{color:#4c5c50;font-weight:600;text-align:right}
+    .steps{display:grid;gap:13px}.step{display:grid;grid-template-columns:23px 1fr;gap:10px;align-items:start}.num{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#eef3eb;color:#537052;font-size:10px;font-weight:800}.step b{font-size:11px;display:block;margin:1px 0 4px;color:#4b594e}.step span{font-size:10px;color:#929a92;line-height:1.5;display:block}
+    .result{display:none;margin-top:18px;padding:16px;border:1px solid #dcebdc;background:#f6fbf4;border-radius:12px}.result.show{display:block}.result h3{font-size:13px;margin:0 0 6px;color:#275537}.result p{font-size:11px;color:#768276;margin:0 0 12px}.download{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border-radius:8px;background:#e4f3d2;color:#244b31;text-decoration:none;font-size:12px;font-weight:740}.error{display:none;margin-top:15px;padding:12px 13px;border-radius:9px;background:#fff2ef;border:1px solid #f2d7d0;color:#a44b3c;font-size:12px;line-height:1.6;white-space:pre-wrap;word-break:break-word}.error.show{display:block}
+    footer{margin-top:25px;color:#9aa39b;font-size:10px;line-height:1.7;text-align:center}
+    .overlay{position:fixed;inset:0;display:none;place-items:center;padding:20px;background:#12201878;backdrop-filter:blur(7px);z-index:5}.overlay.show{display:grid}.login{width:min(400px,100%);padding:28px;border-radius:18px;background:#fff;box-shadow:0 25px 80px #111b1666}.login h2{font-size:20px;margin:0 0 7px;letter-spacing:-.03em}.login p{font-size:12px;color:#818c83;margin:0 0 19px;line-height:1.6}.login label{display:block;font-size:12px;font-weight:700;color:#405044;margin-bottom:8px}.login input{margin-bottom:13px}.login .primary{width:100%}.login-error{min-height:18px;color:#a44b3c;font-size:11px;margin-top:10px}
+    @media(max-width:780px){.layout{grid-template-columns:1fr}.side{grid-template-columns:1fr 1fr}.hero{margin-bottom:20px}.top{margin-bottom:32px}}
+    @media(max-width:540px){.shell{width:calc(100% - 24px);padding-top:22px}.form-card{padding:21px 17px}.fields{grid-template-columns:1fr;gap:15px}.field.full{grid-column:auto}.side{grid-template-columns:1fr}.actions{align-items:flex-start;flex-direction:column}.primary{width:100%}.secure{font-size:0}.secure i{width:9px;height:9px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="top">
+      <div class="brand"><div class="mark">G</div><div><strong>GZTV5 定制台</strong><small>APK CUSTOMIZER</small></div></div>
+      <div class="secure"><i></i><span id="access-label">检查访问模式</span><button id="logout" hidden style="border:0;background:none;color:#506253;cursor:pointer;font-size:12px">退出</button></div>
+    </header>
+    <section class="hero">
+      <div class="eyebrow">PUBLIC BUILD SERVICE</div>
+      <h1>定制你的应用版本</h1>
+      <p>更改应用名称、包名、图标和主网址。原有去广告、隐藏底栏与香港代理配置将保持不变。</p>
+    </section>
+    <div class="layout">
+      <section class="card form-card">
+        <div class="card-title"><div><h2>应用配置</h2><p>此预览使用新建的本地签名证书；与旧版签名不同，已安装旧版须先卸载。</p></div><div class="badge">自托管</div></div>
+        <form id="build-form">
+          <div class="fields">
+            <div class="field"><label for="display_name">应用名称 <span>最多 50 字</span></label><input id="display_name" name="display_name" type="text" autocomplete="off" maxlength="50" required></div>
+            <div class="field"><label for="package_name">Android 包名</label><input id="package_name" name="package_name" type="text" autocomplete="off" maxlength="180" required><p class="help">小写格式，例如 com.example.myapp；更换包名后会作为独立应用安装。</p></div>
+            <div class="field full"><label for="web_url">主网址 <span>完整网址</span></label><input id="web_url" name="web_url" type="url" autocomplete="off" maxlength="2048" placeholder="https://example.com/" required></div>
+            <div class="field full"><label>桌面图标 <span>可选</span></label><label class="upload" for="icon">
+              <div id="preview" class="preview">＋</div><div class="upload-copy"><b>上传自定义图标</b><span id="file-label">正方形 PNG / JPG / WebP，不上传则沿用原图标</span></div><div class="upload-btn">选择图片</div><input id="icon" name="icon" type="file" accept="image/png,image/jpeg,image/webp">
+            </label><p class="help">服务器会裁切并缩放为 512 × 512 PNG，文件最大 20 MB。</p></div>
+          </div>
+          <div class="actions"><button id="submit" class="primary" type="submit">生成定制 APK <span aria-hidden="true">↗</span></button><div class="action-note">构建通常需要数分钟；完成前请保持页面打开。</div></div>
+          <div id="error" class="error" role="alert"></div>
+          <div id="result" class="result"><h3 id="result-title">APK 已准备好</h3><p id="result-text">生成包通过签名与资源校验。</p><a id="download" class="download" href="#">下载 APK <span>↓</span></a></div>
+        </form>
+      </section>
+      <aside class="side">
+        <section class="card side-card"><h3>构建环境</h3><div class="status"><span class="dot"></span><span id="env-status">检查构建环境</span></div><div class="facts"><div class="fact"><span>签名方式</span><b>服务器私有证书</b></div><div class="fact"><span>任务并发</span><b>单任务队列</b></div><div class="fact"><span>下载保留</span><b>最长 24 小时</b></div></div></section>
+        <section class="card side-card"><h3>构建与验证</h3><div class="steps"><div class="step"><div class="num">01</div><div><b>更新应用配置</b><span>仅替换名称、包名、主网址与图标。</span></div></div><div class="step"><div class="num">02</div><div><b>保留既有能力</b><span>去广告、隐藏底栏和代理资源沿用基准 APK。</span></div></div><div class="step"><div class="num">03</div><div><b>签名并校验</b><span>使用原证书签名，检查包名、资源与对齐。</span></div></div></div></section>
+      </aside>
+    </div>
+    <footer>公开免登录：任何人均可提交构建并下载由此服务器私有证书签名的 APK；请勿提交敏感信息。新签名 APK 不能覆盖安装其他签名的旧版。若设备已有旧版，请先卸载后再安装（可能清除本地数据）。生产环境建议通过 HTTPS 访问。</footer>
+  </main>
+  <div id="login-overlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="login-title">
+    <form id="login-form" class="login"><div class="brand" style="margin-bottom:20px"><div class="mark">G</div><div><strong>管理员验证</strong><small>PRIVATE ACCESS</small></div></div><h2 id="login-title">登录定制台</h2><p>此页面仅供管理员使用。请输入服务器部署时设置的管理密码。</p><label for="password">管理密码</label><input id="password" type="password" autocomplete="current-password" required autofocus placeholder="输入管理密码"><button class="primary" type="submit">登录</button><div id="login-error" class="login-error"></div></form>
+  </div>
+  <script>
+    const $ = id => document.getElementById(id);
+    const overlay = $('login-overlay');
+    let currentJob = null;
+    let publicMode = document.body.dataset.publicMode === '1';
+    let authenticated = false;
+    $('access-label').textContent=publicMode?'公开构建 · 无需登录':'私有构建 · 管理员登录';
+    function showLogin(message='') { if(publicMode){ overlay.classList.remove('show'); $('logout').hidden=true; if(message) showError(message); return; } overlay.classList.add('show'); $('login-error').textContent=message; $('password').focus(); $('logout').hidden=true; }
+    function showApp() { overlay.classList.remove('show'); $('logout').hidden=publicMode; }
+    function showError(message) { $('error').textContent=message; $('error').classList.add('show'); $('result').classList.remove('show'); }
+    function clearMessages() { $('error').classList.remove('show'); $('result').classList.remove('show'); }
+    async function api(url, options={}) {
+      const response = await fetch(url, {credentials:'same-origin', ...options});
+      let data={}; try { data=await response.json(); } catch {}
+      if (response.status===401 && url!='/api/login') { showLogin(authenticated?'登录状态已过期，请重新登录。':''); authenticated=false; throw new Error('登录已过期'); }
+      if (!response.ok) throw new Error(data.detail || `请求失败 (${response.status})`);
+      return data;
+    }
+    async function loadStatus() {
+      try { const s=await api('/api/status'); publicMode=!!s.public_mode; authenticated=true; $('access-label').textContent=publicMode?'公开构建 · 无需登录':'私有构建 · 管理员登录'; $('env-status').textContent=s.ready?'基准包与签名就绪':'构建环境未就绪'; showApp(); resumeJob(); }
+      catch(e) { if (e.message!=='登录已过期') showLogin(); }
+    }
+    $('login-form').addEventListener('submit', async e=>{
+      e.preventDefault(); $('login-error').textContent='';
+      try { await api('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:$('password').value})}); $('password').value=''; await loadStatus(); }
+      catch(err) { $('login-error').textContent=err.message; }
+    });
+    $('logout').addEventListener('click', async()=>{ try{await api('/api/logout',{method:'POST'});}catch{} authenticated=false; showLogin(); });
+    $('icon').addEventListener('change',()=>{
+      const file=$('icon').files[0]; $('file-label').textContent=file?file.name:'正方形 PNG / JPG / WebP，不上传则沿用原图标';
+      $('preview').innerHTML=''; if(file){const img=document.createElement('img');img.src=URL.createObjectURL(file);$('preview').appendChild(img);}else{$('preview').textContent='＋';}
+    });
+    function updateProgress(job) {
+      $('submit').disabled=job.status==='queued'||job.status==='running';
+      $('submit').innerHTML=job.status==='queued'?'排队等待中…':job.status==='running'?'正在构建…':'生成定制 APK <span aria-hidden="true">↗</span>';
+      if(job.status==='completed') {
+        $('result-title').textContent='APK 已准备好'; $('result-text').textContent=`${job.output_name} 已生成，并通过签名与资源校验。`;
+        $('download').href=job.download_url; $('result').classList.add('show'); $('error').classList.remove('show'); $('submit').disabled=false; $('submit').innerHTML='生成新的 APK <span aria-hidden="true">↗</span>';
+      } else if(job.status==='failed') {
+        showError(`构建失败：${job.error||'请检查服务器配置后重试。'}`); $('submit').disabled=false; $('submit').innerHTML='重新生成 APK <span aria-hidden="true">↗</span>';
+      } else {
+        $('result').classList.remove('show'); $('error').classList.remove('show');
+        $('result-text').textContent=job.progress||'服务器正在处理…';
+        $('result-title').textContent=job.progress||'构建中'; $('result').classList.add('show');
+      }
+    }
+    async function pollJob(id) {
+      currentJob=id; sessionStorage.setItem('gztv5-job',id);
+      try { while(currentJob===id) { const job=await api(`/api/jobs/${id}`); updateProgress(job); if(job.status==='completed'||job.status==='failed'){sessionStorage.removeItem('gztv5-job');currentJob=null;return;} await new Promise(r=>setTimeout(r,2500)); } }
+      catch(e) { if(e.message!=='登录已过期') showError(e.message); currentJob=null; }
+    }
+    async function resumeJob() { const id=sessionStorage.getItem('gztv5-job'); if(id&&!currentJob) pollJob(id); }
+    $('build-form').addEventListener('submit',async e=>{
+      e.preventDefault(); clearMessages();
+      const form=new FormData(); form.append('display_name',$('display_name').value); form.append('package_name',$('package_name').value); form.append('web_url',$('web_url').value);
+      if($('icon').files[0]) form.append('icon',$('icon').files[0]);
+      $('submit').disabled=true; $('submit').textContent='提交构建任务…';
+      try { const result=await api('/api/build',{method:'POST',body:form}); await pollJob(result.job_id); }
+      catch(err) { $('submit').disabled=false; $('submit').innerHTML='生成定制 APK <span aria-hidden="true">↗</span>'; if(err.message!=='登录已过期') showError(err.message); }
+    });
+    loadStatus();
+  </script>
+</body>
+</html>

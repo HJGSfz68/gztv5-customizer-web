@@ -1,0 +1,32 @@
+services:
+  customizer:
+    build: .
+    image: gztv5-customizer-web:1.0
+    container_name: gztv5-customizer-web
+    restart: unless-stopped
+    init: true
+    env_file:
+      - .env
+    environment:
+      GZTV5_BASE_APK: /srv/private/base.apk
+      GZTV5_KEYSTORE: /srv/private/signing.p12
+      GZTV5_PASSFILE: /srv/private/signing.pass
+      GZTV5_RUNTIME_DIR: /srv/runtime
+      JAVA_TOOL_OPTIONS: "-XX:ActiveProcessorCount=1 -Xms32m -Xmx${JAVA_MAX_HEAP:-288m} -XX:+UseSerialGC -Djava.io.tmpdir=/tmp"
+    ports:
+      - "${BIND_ADDRESS:-0.0.0.0}:${HOST_PORT:-1212}:8080"
+    volumes:
+      - ./private/base.apk:/srv/private/base.apk:ro
+      - ./private/signing.p12:/srv/private/signing.p12:ro
+      - ./private/signing.pass:/srv/private/signing.pass:ro
+      - ./runtime:/srv/runtime
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cpus: "${BUILD_CPU_LIMIT:-0.75}"
+    cpu_shares: 128
+    mem_limit: "${BUILD_MEMORY_LIMIT:-448m}"
+    memswap_limit: "${BUILD_MEMORY_LIMIT:-448m}"
+    pids_limit: 128
+    stop_grace_period: 30s

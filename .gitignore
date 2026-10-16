@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.py[cod]
+private/signing.p12
+private/signing.pass
+private/.signing-pass
+*.p12
+*.pass
+*.jks
+*.keystore
+runtime/
+*.idsig
+*.log
+dist/

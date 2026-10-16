@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+private/**
+runtime/**
+__pycache__/
+*.py[cod]
+.git/
+.venv/
+*.apk
+*.idsig
+*.p12
+*.pass
+*.log
+dist/
